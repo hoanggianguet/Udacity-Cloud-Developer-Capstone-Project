@@ -1,7 +1,28 @@
-# Serverless TODO
+# Serverless TODO List
 
 To implement this project, you need to implement a simple TODO application using AWS Lambda and Serverless framework. 
 
+# Image About TODO List
+Todo List App:
+![Alt text](images/TodoListApp.png?raw=true "Image 6")
+Sort Todo Task By Priority Descending:
+![Alt text](images/SortByPriorityDescending.png?raw=true "Image 7")
+Sort Todo Task By Priority Ascending:
+![Alt text](images/SortByPriorityAscending.png?raw=true "Image 8")
+Sort Todo Task By Due Date Descending:
+![Alt text](images/SortByDueDateDescending.png?raw=true "Image 9")
+Sort Todo Task By Due Date Ascending:
+![Alt text](images/SortByDueDateAscending.png?raw=true "Image 10")
+Sort Todo Task Completed:
+![Alt text](images/GetTodoFinished.png?raw=true "Image 11")
+Sort Todo Task Not Completed:
+![Alt text](images/GetToDoNotFinished.png?raw=true "Image 12")
+Validate Todo Task Name:
+![Alt text](images/PleaseInputTaskName.png?raw=true "Image 13")
+Validate Todo Task DueDate:
+![Alt text](images/PleaseInputDate.png?raw=true "Image 14")
+Validate Todo Task Priority:
+![Alt text](images/PleaseInputPriority.png?raw=true "Image 15")
 # Functionality of the application
 
 This application will allow creating/removing/updating/fetching TODO items. Each TODO item can optionally have an attachment image. Each user only has access to TODO items that he/she has created.
