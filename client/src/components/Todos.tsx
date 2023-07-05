@@ -67,9 +67,6 @@ const priorityOptions = [
 ]
 
 export class Todos extends React.PureComponent<TodosProps, TodosState> {
-  // const [date : any, setDate:any] = Todos.useState<DueDateData>() :any;
-  // const handleDateChange = (event: any, data: any) => setDate(data.value);
-
   state: TodosState = {
     todos: [],
     newTodoName: '',
@@ -90,7 +87,6 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
 
   onTodoCreate = async (event: React.ChangeEvent<HTMLButtonElement>) => {
     try {
-      // const dueDate = this.calculateDueDate()
       if (this.state.newTodoName.trim() === '') {
         alert('Please input task name')
         return
