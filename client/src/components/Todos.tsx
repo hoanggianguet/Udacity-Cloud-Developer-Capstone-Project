@@ -44,6 +44,8 @@ interface TodosState {
   loadingTodos: boolean
   dueDate: string
   priority: number
+  initialDate: Date
+  resetDate: boolean
 }
 
 const priorityOptions = [
@@ -51,19 +53,16 @@ const priorityOptions = [
     key: 'Low Priority',
     text: 'Low Priority',
     value: 1
-    // image: { avatar: true, src: '/images/avatar/small/jenny.jpg' }
   },
   {
     key: 'Medium Priority',
     text: 'Medium Priority',
     value: 2
-    // image: { avatar: true, src: '/images/avatar/small/elliot.jpg' }
   },
   {
     key: 'High Priority',
     text: 'High Priority',
     value: 3
-    // image: { avatar: true, src: '/images/avatar/small/stevie.jpg' }
   }
 ]
 
@@ -76,7 +75,9 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
     newTodoName: '',
     loadingTodos: true,
     dueDate: '',
-    priority: 0
+    priority: 0,
+    initialDate: new Date(),
+    resetDate: false
   }
 
   handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -109,7 +110,10 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
       })
       this.setState({
         todos: [...this.state.todos, newTodo],
-        newTodoName: ''
+        newTodoName: '',
+        priority: 0,
+        dueDate: '',
+        resetDate: true
       })
     } catch {
       alert('Todo creation failed')
@@ -281,11 +285,19 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
               fluid
               actionPosition="left"
               placeholder="To change the world..."
+              value={this.state.newTodoName}
               onChange={this.handleNameChange}
             />
           </Grid.Column>
           <Grid.Column width={3}>
-            <SemanticDatepicker onChange={this.handleDateChange} />
+            <SemanticDatepicker
+              onChange={this.handleDateChange}
+              value={
+                this.state.resetDate === true
+                  ? this.state.initialDate
+                  : undefined
+              }
+            />
           </Grid.Column>
           <Grid.Column width={2}>
             <Dropdown
@@ -294,6 +306,7 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
               selection
               onChange={this.handlePriorityChange}
               options={priorityOptions}
+              value={this.state.priority}
             />
           </Grid.Column>
         </Grid.Row>
@@ -322,10 +335,14 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
           >
             Sort By DueDate Descending
           </Button>
-          <Button icon color="pink" onClick={() => this.onGetTodoFinished()}>
+          <Button icon color="orange" onClick={() => this.onGetTodoFinished()}>
             Get todo Finish
           </Button>
-          <Button icon color="pink" onClick={() => this.onGetTodoNotFinished()}>
+          <Button
+            icon
+            color="orange"
+            onClick={() => this.onGetTodoNotFinished()}
+          >
             Get todo Not Finish
           </Button>
         </Grid.Row>
@@ -408,11 +425,4 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
       </Grid>
     )
   }
-
-  // calculateDueDate(): string {
-  //   const date = new Date()
-  //   date.setDate(date.getDate() + 7)
-
-  //   return dateFormat(date, 'yyyy-mm-dd') as string
-  // }
 }
